@@ -1,0 +1,188 @@
+% Main Overleaf document. Compiler: pdfLaTeX.
+% Options: blue (default), cyan, dark, handout.
+\documentclass[10pt,aspectratio=169]{dgist_beamer}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{Research Presentation}
+\subtitle{Robotics and Mechatronics Engineering}
+\author{Donghae Kim}
+\institute{Control Group for Intelligent Multi-Agent Systems\\
+  Daegu Gyeongbuk Institute of Science and Technology}
+\date{Seminar / Conference\\\today}
+% Footer text is empty by default. Uncomment either line to add your own:
+\setfooterleft{Donghae Kim, title of the presentation}
+\setfooterright{Conference name, date, location, ...}
+% Optional: \setbeameroption{show notes}
+% Optional: \AtBeginSection[]{\dgistsectionframe}
+
+\begin{document}
+\dgisttitleframe
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Research content}
+\dgistsectionframe
+
+\begin{frame}
+  \frametitle{Problem formulation}
+  \framesubtitle{An example layout for equations and assumptions}
+  Consider a network of $N$ agents with local objectives $f_i$:
+  \begin{equation*}
+    \underset{x\in\mathcal{X}}{\operatorname{minimize}}
+    \quad F(x)=\sum_{i=1}^{N} f_i(x).
+  \end{equation*}
+  \vspace{.12cm}
+  \begin{itemize}
+    \setlength{\itemsep}{.18cm}
+    \item Each agent has access to its own objective and local measurements.
+    \item Neighboring agents exchange information over a communication graph.
+    \item The goal is to reach a common feasible solution.
+  \end{itemize}
+  \vspace{.20cm}
+  \begin{block}{Research question}
+    Which assumptions guarantee convergence of the distributed algorithm?
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Assumptions and analysis}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{.47\textwidth}
+      \begin{block}{Assumptions}
+        \begin{itemize}
+          \setlength{\itemsep}{.15cm}
+          \item Convex local objectives
+          \item A nonempty feasible set
+          \item Suitable graph connectivity
+        \end{itemize}
+      \end{block}
+      \vspace{.18cm}
+      State the exact assumptions for your model and algorithm here.
+    \end{column}
+    \begin{column}{.47\textwidth}
+      \begin{exampleblock}{Analysis outline}
+        \begin{enumerate}
+          \setlength{\itemsep}{.15cm}
+          \item Establish boundedness.
+          \item Bound disagreement.
+          \item Show optimality.
+        \end{enumerate}
+      \end{exampleblock}
+      \vspace{.18cm}
+      \begin{alertblock}{Scope}
+        This slide illustrates formatting, not a complete convergence result.
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Illustrative convergence curves}
+  \framesubtitle{Synthetic functions for demonstrating the plot style}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.64\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth,height=.49\paperheight,
+          xmin=0,xmax=10,ymin=0,ymax=1.05,
+          xlabel={Time $t$},ylabel={Normalized error},
+          tick label style={font=\scriptsize,color=text},
+          label style={font=\small,color=text},
+          axis line style={draw=muted},tick style={draw=muted},
+          grid=major,grid style={draw=rulecolor},
+          legend style={font=\scriptsize,draw=none,fill=pagebackground,text=text},
+          legend pos=north east,
+          samples=101,domain=0:10]
+          \addplot[highlight,very thick] {exp(-.65*x)};
+          \addlegendentry{$e^{-0.65t}$}
+          \addplot[dgist_cyan,very thick,dashed] {exp(-.30*x)};
+          \addlegendentry{$e^{-0.30t}$}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{.31\textwidth}
+      \textbf{Figure layout}\par\medskip
+      Use consistent units and distinguish curves by line style as well as color.
+      \par\bigskip
+      Replace this plot with your simulation or experimental results.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Comparison table}
+  \framesubtitle{A reusable format for assumptions and guarantees}
+  \renewcommand{\arraystretch}{1.55}
+  \begin{center}
+    \begin{tabular}{@{}p{.25\textwidth}p{.29\textwidth}p{.29\textwidth}@{}}
+      \toprule
+      \textcolor{highlight}{\textbf{Property}} &
+      \textcolor{highlight}{\textbf{Baseline}} &
+      \textcolor{highlight}{\textbf{Proposed method}}\\
+      \midrule
+      Graph model & State the assumption & State the assumption\\
+      Objective class & State the assumption & State the assumption\\
+      Constraints & State the admissible set & State the admissible set\\
+      Guarantee & State the result & State the result\\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{.25cm}
+  Include the relevant references and conditions when comparing methods.
+\end{frame}
+
+\section{Template reference}
+\dgistsectionframe
+
+\begin{frame}
+  \frametitle{DGIST color palette}
+  \framesubtitle{Official CMYK definitions from DGIST Branding \& Identity}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{center}\small
+    \begin{tabular}{@{}llcl@{}}
+      \toprule
+      Color name & Pantone reference & Swatch & CMYK (\%)\\
+      \midrule
+      \texttt{dgist\_cyan} & 2985 CVC & \textcolor{dgist_cyan}{\rule{1.1cm}{.24cm}} & 72 / 0 / 0 / 0\\
+      \texttt{dgist\_blue} & 285 CVC & \textcolor{dgist_blue}{\rule{1.1cm}{.24cm}} & 91 / 43 / 0 / 0\\
+      \texttt{dgist\_navy} & 280 CVC & \textcolor{dgist_navy}{\rule{1.1cm}{.24cm}} & 100 / 72 / 0 / 18\\
+      \texttt{dgist\_gray} & Cool Grey 9 CVC & \textcolor{dgist_gray}{\rule{1.1cm}{.24cm}} & 0 / 0 / 0 / 65\\
+      \texttt{dgist\_lightgray} & Cool Grey 2 CVC & \textcolor{dgist_lightgray}{\rule{1.1cm}{.24cm}} & 0 / 0 / 0 / 11\\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{.15cm}
+  {\small Use \texttt{highlight}, \texttt{text}, and \texttt{muted} for content
+  that adapts to light and dark themes.}\par\medskip
+  {\scriptsize\href{https://www.dgist.ac.kr/eng/sub01_02_04_01.do}{Source: DGIST official color system}}
+  \note{Color specifications: https://www.dgist.ac.kr/eng/sub01_02_04_01.do.
+    The source logo files are unchanged. The title and closing slides use
+    the original logo arrangement at reduced size, slightly lower, with centered text.
+    Department website: https://www.dgist.ac.kr/robot/.}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Settings for your next presentation}
+  \begin{block}{Document class}
+\begin{verbatim}
+\documentclass[10pt,aspectratio=169]{dgist_beamer}
+\end{verbatim}
+  \end{block}
+  \begin{itemize}
+    \setlength{\itemsep}{.18cm}
+    \item Add \texttt{dark} for a dark background or \texttt{cyan} for a cyan accent.
+    \item Add \texttt{handout} to collapse overlays for distribution.
+    \item Footer text is empty by default. Frame numbers remain visible.
+    \item Use \verb|\setfooterleft| and \verb|\setfooterright| to add footer text.
+  \end{itemize}
+  \vspace{.18cm}
+  The \texttt{README.md} describes the available commands.
+\end{frame}
+
+\dgistclosingframe{CiMAS\\Robotics and Mechatronics Engineering, DGIST}
+\end{document}
